@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>border-[direction] 예제 코드</title>
+    <style>
+      .top {
+        border-top: 2px dotted red;
+      }
+      .right {
+        border-right: 4px solid blue;
+      }
+      .bottom {
+        border-bottom: 3px dashed green;
+      }
+      .left {
+        border-left: 5px double orange;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>border-[direction] 예제 코드</h1>
+    <div class="top">상단 테두리 스타일 예제</div>
+    <div class="right">우측 테두리 스타일 예제</div>
+    <div class="bottom">하단 테두리 스타일 예제</div>
+    <div class="left">좌측 테두리 스타일 예제</div>
+  </body>
+</html>

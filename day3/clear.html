@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clear Example</title>
+  <style>
+    .left {
+      float: left;
+      width: 50%;
+      background-color: lightblue;
+    }
+    
+    .right {
+      float: right;
+      width: 50%;
+      background-color: lightgreen;
+    }
+    
+    .clearfix {
+      clear: both;
+    }
+    
+    .clear-left {
+      clear: left;
+      background-color: lightcoral;
+    }
+    
+    .clear-right {
+      clear: right;
+      background-color: lightgoldenrodyellow;
+    }
+    
+    .clear-both {
+      clear: both;
+      background-color: lightpink;
+    }
+  </style>
+</head>
+<body>
+  <div class="left">
+    <h2>Left Element</h2>
+    <p>This is the left element.</p>
+  </div>
+  
+  <div class="right">
+    <h2>Right Element</h2>
+    <p>This is the right element.</p>
+  </div>
+  
+  <div class="clearfix"></div>
+  
+  <div class="clear-left">
+    <h2>Clear Left</h2>
+    <p>This element has the clear-left class and will start on a new line after any left-floating elements.</p>
+  </div>
+  
+  <div class="clear-right">
+    <h2>Clear Right</h2>
+    <p>This element has the clear-right class and will start on a new line after any right-floating elements.</p>
+  </div>
+  
+  <div class="clear-both">
+    <h2>Clear Both</h2>
+    <p>This element has the clear-both class and will start on a new line after any floating elements.</p>
+  </div>
+</body>
+</html>

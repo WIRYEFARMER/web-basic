@@ -1,61 +1,70 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>또 이거? 실습</title>
+    <title>또또 이거? 실습</title>
     <style>
-      .box1 {
+      .container {
+        position: relative;
+        width: 400px;
+        height: 600px;
+      }
+      .box {
         position: absolute;
+        text-align: center;
+      }
+      .box1 {
         top: 150px;
         left: 50px;
         width: 200px;
         height: 100px;
         background-color: blue;
-        text-align: center;
       }
       .box2 {
-        position: absolute;
         top: 150px;
         left: 250px;
         width: 100px;
         height: 300px;
         background-color: green;
-        text-align: center;
       }
       .box3 {
-        position: absolute;
         top: 450px;
         left: 150px;
         width: 200px;
         height: 100px;
         background-color: pink;
-        text-align: center;
       }
       .box4 {
-        position: absolute;
         top: 250px;
         left: 50px;
         width: 100px;
         height: 300px;
         background-color: red;
-        text-align: center;
       }
       .box5 {
-        position: absolute;
         top: 250px;
         left: 150px;
         width: 100px;
         height: 200px;
         background-color: yellow;
-        
+      }
+      .box5 img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     </style>
   </head>
   <body>
-    <h1>또 이거? 실습</h1>
-    <div class="box1">1</div>
-    <div class="box2">2</div>
-    <div class="box3">3</div>
-    <div class="box4">4</div>
-    <div class="box5"><img src="https://dimg.donga.com/wps/NEWS/IMAGE/2021/01/17/104953245.2.jpg" width="100px" height="200"></a></div>
+    <h1>또또 이거? 실습</h1>
+    <div class="container">
+      <div class="box box1">1</div>
+      <div class="box box2">2</div>
+      <div class="box box3">3</div>
+      <div class="box box4">4</div>
+      <div class="box box5" id="box5"></div>
+    </div>
+    <script>
+      document.getElementById('box5').innerHTML = '<img src="https://dimg.donga.com/wps/NEWS/IMAGE/2021/01/17/104953245.2.jpg" width="100px" height="200">';
+    </script>
   </body>
 </html>

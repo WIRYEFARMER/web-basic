@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mouse Events 예제</title>
+    <style>
+      button {
+        padding: 10px;
+        margin: 10px;
+      }
+      div {
+        width: 200px;
+        height: 200px;
+        margin: 10px;
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body onload="alert('불러왔슈~')">
+    <button onclick="alert('클릭함')">클릭하세요</button>
+    <select onchange="alert('선택됨')">
+      <option>선택</option>
+      <option>옵션1</option>
+      <option>옵션2</option>
+    </select>
+    <div
+      onmouseover="alert('마우스 들어옴')"
+      onmouseout="alert('마우스 나감')"
+      onmousedown="alert('마우스 클릭함')"
+      onmouseup="alert('마우스 클릭 해제함')"
+    ></div>
+    <textarea onkeydown="alert('키보드 입력됨')"></textarea>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      let input = prompt("1부터 100 사이의 숫자를 입력해주세요.");
+
+      if (isNaN(input)) {
+        alert("숫자를 입력해 주세요.");
+      } else if (input < 1 || input > 100) {
+        alert("1이상 100 이하를 넣어주세요.");
+      } else {
+        for (let i = 1; i <= input; i++) {
+          console.log(i);
+          
+          if (i === 100) {
+            alert("완료되었습니다.");
+          }
+        }
+        alert("잘 입력하셨습니다. 100까지 로그를 찍어주세요.")
+      }
+    </script>
+  </head>
+
+  <body></body>
+</html>

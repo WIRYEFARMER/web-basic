@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>메뉴 버튼 스타일 변경</title>
+    <style>
+      .menu-button1 {
+        position:absolute;
+        width:150px;
+        height:50px;
+        top:150px;
+        left : 300px;
+        background-color: gray;
+        border: 1px solid black;
+        padding: 20px;
+        margin-right: 10px;
+        cursor: pointer;
+        color:white;
+      }
+      .menu-button2 {
+        position:absolute;
+        width:150px;
+        height:50px;
+        top:150px;
+        left:500px;
+        background-color: gray;
+        border: 1px solid black;
+        padding: 20px;
+        margin-right: 10px;
+        cursor: pointer;
+        color:white;
+      }
+      .menu-button3 {
+        position:absolute;
+        width:150px;
+        height:50px;
+        top:150px;
+        left:100px;
+        background-color: gray;
+        border: 1px solid black;
+        padding: 20px;
+        margin-right: 10px;
+        cursor: pointer;
+        color:white;
+      }
+
+      .menu-button1.selected, .menu-button2.selected, .menu-button3.selected {
+        background-color: white;
+        border: 1px solid black;
+        color:black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>메뉴 버튼 클릭시 색상 변경</h1>
+    <div class="menu-button1" id="html-button">HTML</div>
+    <div class="menu-button2" id="css-button">CSS</div>
+    <div class="menu-button3" id="javascript-button">JavaScript</div>
+    <script>
+      const buttons = document.querySelectorAll('.menu-button1, .menu-button2, .menu-button3');
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          buttons.forEach((button) => {
+            button.classList.remove('selected');
+            button.style.backgroundColor = 'gray';
+            button.style.borderColor = 'black';
+          });
+          button.classList.add('selected');
+          button.style.backgroundColor = 'white';
+          button.style.borderColor = 'black';
+        });
+      });
+    </script>
+  </body>
+</html>

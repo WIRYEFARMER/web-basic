@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>연규의 자바스크립트</title>
+    <script>
+      function changeColor(color) {
+        const text = document.getElementById('text');
+        text.style.color = color;
+        alert(`텍스트 색상이 ${color}로 변경됩니다.`);
+      }
+
+      function submitText() {
+        const input = document.getElementById('inputText').value;
+        if (!input) {
+          alert('텍스트값을 입력해 주세요.');
+          return;
+        }
+
+        const text = document.getElementById('text');
+        text.innerHTML = input;
+
+        const buttonContainer = document.getElementById('buttonContainer');
+        if (!buttonContainer.innerHTML) {
+          buttonContainer.innerHTML = `
+            <button onclick="changeColor('red')">빨강</button>
+            <button onclick="changeColor('blue')">파랑</button>
+            <button onclick="changeColor('green')">초록</button>
+          `;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>입력된 텍스트 색상 변경</h1>
+    <input type="text" id="inputText" placeholder="텍스트 입력" />
+    <button onclick="submitText()">입력</button>
+    <div id="text"></div>
+    <div id="buttonContainer"></div>
+  </body>
+</html>

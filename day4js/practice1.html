@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function inputname() {
+            let name = prompt("이름을 입력하세요 : ");
+            while (name === null || name === "") {
+                name = prompt("이름을 입력하세요 : ");
+            }
+            console.log(name);
+            alert(name + "님 안녕하세요.")
+        }
+
+    </script>
+</head>
+<body>
+    <script>inputname()</script>
+    
+    
+</body>
+</html>

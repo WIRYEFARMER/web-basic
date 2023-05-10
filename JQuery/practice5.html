@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>회원가입</title>
+    <script
+    src="https://code.jquery.com/jquery-3.6.4.js"
+    integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+    crossorigin="anonymous"
+  ></script>
+    <style>
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      input[type="text"],
+      input[type="password"] {
+        width: 300px;
+        height: 30px;
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+      input[type="radio"] {
+        margin-right: 10px;
+      }
+      select {
+        width: 300px;
+        height: 30px;
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+      .checkbox-container {
+        margin-bottom: 10px;
+      }
+      .checkbox-container label {
+        display: inline-block;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>회원가입</h1>
+    <form>
+        <form>
+            <label for="id">아이디</label>
+            <input type="text" id="id" name="id" required />
+            <div id="idErrorMsg" style="color: red; display: none;">아이디는 이메일 형식이어야 합니다.</div>
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" name="password" required />
+            <div id="pwErrorMsg" style="color: red; display: none;">비밀번호는 5자 이상이어야 합니다.</div>
+            <label>성별</label>
+      <label
+        ><input type="radio" name="gender" value="male" required />남</label
+      >
+      <label
+        ><input type="radio" name="gender" value="female" required />여</label
+      >
+      <div id="genderErrorMsg" style="color: red; display: none;">성별을 선택해주세요.</div>
+      <label for="job">직업</label>
+      <select id="job" name="job" required>
+        <option value="none"></option>
+        <option value="student">학생</option>
+        <option value="teacher">교사</option>
+        <option value="engineer">엔지니어</option>
+        <option value="others">기타</option>
+      </select>
+      <div id="jobErrorMsg" style="color: red; display: none;">직업을 선택해주세요.</div>
+      <label>취미 선택</label>
+      <div class="checkbox-container">
+        <label
+          ><input type="checkbox" name="hobby" value="reading" />독서</label
+        >
+        <label><input type="checkbox" name="hobby" value="sports" />운동</label>
+        <label
+          ><input type="checkbox" name="hobby" value="music" />음악 감상</label
+        >
+        <label
+          ><input type="checkbox" name="hobby" value="movie" />영화 감상</label
+        >
+        <label><input type="checkbox" name="hobby" value="travel" />여행</label>
+        <label
+          ><input type="checkbox" name="hobby" value="cooking" />요리</label
+        >
+      </div>
+      <div id="hobbyErrorMsg" style="color: red; display: none;">취미는 최소 3개 이상 선택해주세요.</div>
+      <button type="submit">회원가입</button>
+      <button type="button" id="cancelBtn">취소</button>
+    </form>
+    <script>
+      $("form").submit(function (e) {
+        e.preventDefault();
+
+        const id = $("#id").val();
+        const password = $("#password").val();
+        const gender = $('input[name="gender"]:checked').val();
+        const job = $("#job option:selected").val();
+        const hobbies = [];
+        $('input[name="hobby"]:checked').each(function () {
+          hobbies.push($(this).val());
+        });
+        $("#cancelBtn").on("click", function () {
+        $("#id").val("");
+        $("#password").val("");
+        $('input[name="gender"]').prop("checked", false);
+        $("#job").val("none");
+        $('input[name="hobby"]').prop("checked", false);
+        });
+
+        const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+        if (!emailRegex.test(id)) {
+          $("#idErrorMsg").show();
+        } else {
+          $("#idErrorMsg").hide();
+        }
+
+        if (password.length < 5) {
+          $("#pwErrorMsg").show();
+        } else {
+          $("#pwErrorMsg").hide();
+        }
+
+        if (!gender) {
+          $("#genderErrorMsg").show();
+        } else {
+          $("#genderErrorMsg").hide();
+        }
+
+        if (job === "none") {
+          $("#jobErrorMsg").show();
+        } else {
+          $("#jobErrorMsg").hide();
+        }
+
+        if (hobbies.length < 3) {
+          $("#hobbyErrorMsg").show();
+        } else {
+          $("#hobbyErrorMsg").hide();
+        }
+
+       // console.log("회원가입 정보", $("form").serialize()); //서버로 회원가입 정보를 전송하기 위해 필요한 코드
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>사다리 게임</title>
+	<style>
+		#ladder {
+			display: grid;
+			grid-template-columns: repeat(6, 1fr);
+			grid-template-rows: repeat(5, 1fr);
+			grid-gap: 10px;
+			margin-bottom: 20px;
+		}
+
+		.line {
+			background-color: black;
+			grid-column: span 2;
+			height: 5px;
+			width: 100%;
+			transform: rotate(45deg);
+			transition: transform 0.3s;
+		}
+
+		.player {
+			background-color: red;
+			height: 50px;
+			width: 50px;
+			transition: transform 0.3s;
+			grid-column: 1;
+			grid-row: 1;
+		}
+	</style>
+</head>
+<body>
+	<div id="ladder"></div>
+	<button onclick="startGame()">게임 시작</button>
+
+	<script>
+		function startGame() {
+			// 격자 그리기
+			const ladderDiv = document.getElementById("ladder");
+			ladderDiv.innerHTML = "";
+			for (let row = 0; row < 5; row++) {
+				for (let col = 0; col < 6; col++) {
+					const lineDiv = document.createElement("div");
+					lineDiv.classList.add("line");
+					if (col === 0) {
+						lineDiv.style.gridColumn = "1 / span 2";
+					} else if (col === 5) {
+						lineDiv.style.gridColumn = "5 / span 2";
+					}
+					ladderDiv.appendChild(lineDiv);
+				}
+			}
+
+			// 참여자 수 및 선 수 무작위 생성
+			const numPlayers = Math.floor(Math.random() * 6) + 3;
+			const numLines = Math.floor(Math.random() * 4) + 2;
+
+			// 무작위로 선을 그리기
+			const lines = [];
+			for (let i = 0; i < numLines; i++) {
+				const start = Math.floor(Math.random() * 5);
+				let end = Math.floor(Math.random() * 5);
+				while (end === start) {
+					end = Math.floor(Math.random() * 5);
+				}
+				const line = [start, end];
+				lines.push(line);
+			}
+
+			// 결과 출력
+			const playerDiv = document.createElement("div");
+			playerDiv.classList.add("player");
+			ladderDiv.appendChild(playerDiv);
+
+			let currentRow = 0;
+			let currentCol = 0;
+			for (let i = 0; i < numPlayers - 1; i++) {
+				currentCol += 2;
+				for (let j = 0; j < numLines; j++) {
+					const [start, end] = lines[j];
+					if (currentRow === start && currentCol === (end * 2)) {
+						currentRow = end;
+						currentCol -= 2;
+					} else if (currentRow === end && currentCol === (start * 2)) {
+						currentRow = start;
+						currentCol -= 2;
+					}
+				}
+
+				const playerDiv = document.createElement("div");
+				playerDiv.classList.add("player");
+				playerDiv.style.gridColumn = `${currentCol + 1} / ${currentCol + 2}`;
+				playerDiv.style.gridRow = `${currentRow + 1} / ${currentRow + 2}`;
+				ladderDiv.appendChild(playerDiv);
+			}
+		}
+	</script>
+</body>
+</html>

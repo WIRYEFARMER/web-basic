@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script
+    src="https://code.jquery.com/jquery-3.6.4.js"
+    integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    //onload
+    //이름 없는 함수(익명함수, annonymous function)
+   // $(function () {
+    //  alert("hello!");
+   // });
+$(function () {
+    $('#box').click(function() {
+        console.log('click!!');
+
+        $(this).html('<h1>구겨넣기</h1>');      //박스 안에 구겨넣기 란 문장 삽입
+        $(this).append('hihi')      //hihi를 도큐먼트에 추가
+        $(this).attr('class','border');     //dotted 줄 추가
+        $(this).addClass('small-text')
+
+    }).mouseover(function() {
+        console.log('mouseover');
+        $(this).css('background-color', 'yellow');
+        $(this).attr('class','border');     //마우스가 박스 위에 올라오면 dotted 줄 추가
+    }).mouseleave(function() {
+        console.log('mouseleave');
+        $(this).css('background-color', 'green');
+        $(this).attr('class', '')       //마우스가 박스 밖에 나가면 dotted 줄 제거
+    });
+
+})
+
+    //  $(() => {
+    //      alert('hello');
+    //  })    위 코드와 동일하게 동작함. 람다식. 화살표표기법
+  </script>
+  <style>
+    #box {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+    .border {
+        border : 2px black dotted;
+    }
+
+  </style>
+  <body onload="alert('hello')">
+    <h1>Hello~</h1>
+    <div id="box"></div>
+  </body>
+</html>

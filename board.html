@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>로그 콘솔에 찍어버리기</title>
+  <script
+  src="https://code.jquery.com/jquery-3.6.4.js"
+  integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+  crossorigin="anonymous"
+></script>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    #logBtn {
+        margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>로그 콘솔에 찍기</h1>
+  <table>
+    <thead>
+      <tr>
+        <th><input type="checkbox" id="selectAll" /> 확인</th>
+        <th>제목</th>
+        <th>시간</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="checkbox" class="postCheckbox" /></td>
+        <td>폴리텍</td>
+        <td>2023-05-10 12:00</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="postCheckbox" /></td>
+        <td>인공지능</td>
+        <td>2023-05-10 13:00</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="postCheckbox" /></td>
+        <td>소프트웨어</td>
+        <td>2023-05-10 16:00</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="postCheckbox" /></td>
+        <td>하이테크</td>
+        <td>2023-05-10 18:00</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="postCheckbox" /></td>
+        <td>과정</td>
+        <td>2023-05-10 19:00</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="postCheckbox" /></td>
+        <td>OpenAPI</td>
+        <td>2023-05-10 21:00</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="postCheckbox" /></td>
+        <td>배우는중</td>
+        <td>2023-05-10 22:00</td>
+      </tr>
+
+    </tbody>
+  <button id="logBtn">로그</button>
+  <div id="output"></div>
+  <script>
+    $("#selectAll").on("click", function () {
+      $(".postCheckbox").prop("checked", this.checked);
+    });
+
+    $(".postCheckbox").on("click", function () {
+      if ($(".postCheckbox:checked").length === $(".postCheckbox").length) {
+        $("#selectAll").prop("checked", true);
+      } else {
+        $("#selectAll").prop("checked", false);
+      }
+    });
+
+    $("#logBtn").on("click", function () {
+      const selectedTitles = [];
+      $(".postCheckbox:checked").each(function () {
+        selectedTitles.push($(this).closest("tr").find("td:nth-child(2)").text());
+      });
+
+      if (selectedTitles.length > 0) {
+        $("#output").html("선택된 제목: " + selectedTitles.join(", "));
+      } else {
+        $("#output").html("선택된 항목이 없습니다.");
+      }
+    });
+  </script>
+</body>
+</html>

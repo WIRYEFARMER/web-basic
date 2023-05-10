@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head><H1>연규의 랜덤 숫자 추출기</H1>
+	<title>연규의 랜덤 숫자 추출기</title>
+</head>
+<body>
+	<label for="minNum">시작 값:</label>
+	<input type="number" id="minNum">
+    <br><br>
+	<label for="maxNum">끝 값:</label>
+	<input type="number" id="maxNum">
+    <br>
+    <br>
+
+	<button onclick="generateRandom()">숫자 추출</button>
+
+	<div id="result"></div>
+
+	<script>
+		function generateRandom() {
+			// 입력된 최소값, 최대값 가져오기
+			const minNum = parseInt(document.getElementById("minNum").value);
+			const maxNum = parseInt(document.getElementById("maxNum").value);
+
+			// 범위 내에서 랜덤한 숫자 생성
+			const randomNum = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
+
+			// 결과 출력
+			const resultDiv = document.getElementById("result");
+			resultDiv.innerHTML = `${minNum}부터 ${maxNum}까지의 랜덤한 숫자는 ${randomNum}입니다.`;
+		}
+	</script>
+</body>
+</html>
+

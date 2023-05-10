@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>로또 번호 추첨</title>
+</head>
+<body>
+	<button onclick="generateLotto()">로또 번호 추첨</button>
+	<div id="result"></div>
+
+	<script>
+		function generateLotto() {
+			const numbers = [];
+
+			// 1부터 45까지의 숫자를 배열에 저장
+			for (let i = 1; i <= 45; i++) {
+				numbers.push(i);
+			}
+
+			const lottoNumbers = [];
+
+			// 중복되지 않는 6개의 숫자를 랜덤하게 선택
+			for (let i = 0; i < 6; i++) {
+				const randomIndex = Math.floor(Math.random() * numbers.length);
+				const selectedNumber = numbers.splice(randomIndex, 1)[0];
+				lottoNumbers.push(selectedNumber);
+			}
+
+			// 낮은 순부터 큰 순으로 정렬
+			lottoNumbers.sort(function(a, b) {
+				return a - b;
+			});
+
+			// 결과 출력
+			const resultDiv = document.getElementById("result");
+			resultDiv.innerHTML = "로또 번호 추첨 결과: ";
+
+			const ul = document.createElement("ul");
+			for (let i = 0; i < lottoNumbers.length; i++) {
+				const li = document.createElement("li");
+				li.textContent = lottoNumbers[i];
+				ul.appendChild(li);
+			}
+
+			resultDiv.appendChild(ul);
+		}
+	</script>
+</body>
+</html>

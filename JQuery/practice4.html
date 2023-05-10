@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>메뉴 버튼 스타일 변경</title>
+    <style>
+      .menu-button {
+        position: absolute;
+        width: 150px;
+        height: 50px;
+        background-color: gray;
+        border: 1px solid black;
+        padding: 20px;
+        margin-right: 10px;
+        cursor: pointer;
+        color: white;
+      }
+      #html-button {
+        top: 150px;
+        left: 100px;
+      }
+      #css-button {
+        top: 150px;
+        left: 300px;
+      }
+      #javascript-button {
+        top: 150px;
+        left: 500px;
+      }
+
+      .selected {
+        background-color: white;
+        border: 1px solid black;
+        color: black;
+      }
+    </style>
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.js"
+      integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        $(".menu-button").on("click", function () {
+          $(".menu-button").removeClass("selected");
+          $(".menu-button").css("background-color", "gray");
+          $(".menu-button").css("border-color", "black");
+          $(this).addClass("selected");
+          $(this).css("background-color", "white");
+          $(this).css("border-color", "black");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>JQuery를 이용한 메뉴 버튼 클릭시 색상 변경</h1>
+    <div class="menu-button" id="html-button">HTML</div>
+    <div class="menu-button" id="css-button">CSS</div>
+    <div class="menu-button" id="javascript-button">JavaScript</div>
+  </body>
+</html>

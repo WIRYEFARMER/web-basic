@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>연규의 자바스크립트</title>
+    <style>
+      #text {
+        color: black; /* 초기 폰트 색상 */
+      }
+    </style>
+    <script
+    src="https://code.jquery.com/jquery-3.6.4.js"
+    integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    function changeColor(color) {
+      const text = $('#text');
+      text.css('color', color);
+      alert(`텍스트 색상이 ${color}로 변경됩니다.`);
+    }
+  
+    function submitText() {
+      const input = $('#inputText').val(); /*val()를 사용하면 #inputText의 내용을 input에 저장시킴*/
+      if (!input) {
+        alert('텍스트값을 입력해 주세요.');
+        return;
+      }
+  
+      const text = $('#text');
+      text.html(input);
+  
+      const buttonContainer = $('#buttonContainer');
+      if (!buttonContainer.html()) {
+        buttonContainer.html(`
+          <button onclick="changeColor('red')">빨강</button>
+          <button onclick="changeColor('blue')">파랑</button>
+          <button onclick="changeColor('green')">초록</button>
+        `);
+      }
+    }
+  
+    $(document).ready(function() {
+      $('#submitBtn').on('click', submitText);
+    });
+  </script>
+  </head>
+  <body>
+    <h1>입력된 텍스트 색상 변경</h1>
+    <input type="text" id="inputText" placeholder="텍스트 입력" />
+    <button id="submitBtn">입력</button>
+    <div id="text"></div>
+    <div id="buttonContainer"></div>
+  </body>
+</html>

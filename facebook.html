@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>페이스북에 포스팅하기</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+      .header {
+        background-color: #3b5998;
+        color: #fff;
+        padding: 10px;
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: normal;
+      }
+      .container {
+        margin: 10px;
+        padding: 10px;
+        background-color: rgb(194, 194, 194);
+        box-shadow: 0 0 5px #cccccc9c;
+        overflow: auto; /* 스크롤 추가 */
+        max-height: 600px; /* 스크롤이 나타날 최대 높이 지정 */
+      }
+      .post {
+        margin: 10px 0;
+        border: 1px solid white;
+        padding: 10px;
+        background-color: white;
+      }
+      .post h2 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: normal;
+      }
+      .post b {
+        margin-right: 5px;
+      }
+      .post p {
+        margin: 10px 0;
+        font-size: 14px;
+      }
+      #inputText {
+        width: 400px;
+        height: 40px;
+        font-size: 15px;
+        margin: 10px;
+      }
+      #addPostBtn {
+        width: 70px;
+        height: 40px;
+        margin: 5px;
+        font-size: 13px;
+      }
+    </style>
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.js"
+      integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        $("#headerText").text("최연규님, 안녕하세요?");
+
+        $(".post").each(function () {
+          const author = $(this).find("h2 b").text();
+          const post = $(this).find("p").text();
+          $(this).find("h2").html(`<b>${author}</b>`);
+          $(this).find("p").html(`${post}`);
+        });
+
+        $("#addPostBtn").on("click", function () {
+          const content = $("#inputText").val();
+          if (content) {
+            const newPost = $(
+              `<div class="post"><h2><b>최연규</b></h2><p>${content}</p></div>`
+            );
+            $(".container").prepend(newPost); // 변경된 부분
+            $("#inputText").val("");
+          }
+        });
+        
+      });
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <h1 id="headerText"></h1>
+    </div>
+    <input type="text" id="inputText" placeholder=" 무슨생각을 하고 있나요?" />
+    <button id="addPostBtn">포스팅 <br /></button>
+    <div><b>뉴스피드</b></div>
+    <div class="container">
+      
+      
+      <div class="post">
+        <h2><b>박지성</b></h2>
+        <p>SBS에서 월드컵 보세요!</p>
+      </div>
+      <div class="post">
+        <h2><b>안정환</b></h2>
+        <p>Ahn Jeong-hwan</p>
+      </div>
+      <div class="post">
+        <h2><b>이영표</b></h2>
+        <p>Lee Yeong-pyo</p>
+      </div>
+    </div>
+  </body>
+</html>

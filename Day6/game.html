@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>T-Rex Runner</title>
+    <style>
+      #game {
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+        background-color: #eee;
+      }
+
+      #character {
+        position: absolute;
+        bottom: 0;
+        left: 50px;
+        height: 50px;
+        width: 50px;
+        background-color: blue;
+      }
+
+      #obstacle {
+        position: absolute;
+        bottom: 0;
+        right: -50px;
+        height: 25px;
+        width: 25px;
+        background-color: red;
+      }
+      #game-over {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2em;
+        color: red;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="game">
+        <div id="character"></div>
+        <div id="obstacle"></div>
+        <div id="game-over"></div>
+        <div id="score">0</div>
+        <button id="restart-button">다시하기</button>
+      </div>
+      
+
+    <script src="gamejs.js"></script>
+  </body>
+</html>

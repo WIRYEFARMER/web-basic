@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>호머심슨의 바트 피하기</title>
+    <style>
+      #game {
+        background-image: url("/Day6/img/bg3.jpg");
+        background-size: cover;
+        background-position: 0 0;
+        width: 600px;
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+       
+      }
+
+      #character {
+        position: absolute;
+        bottom: 0px;
+        left: 5px;
+        height: 50px;
+        width: 50px;
+      }
+
+      #obstacle {
+        position: absolute;
+        bottom: 0px;
+        right: 50px;
+        height: 40px;
+        width: 25px;
+      }
+
+      #bullet {
+        position: absolute;
+        bottom: 25px;
+        left: -20px;
+        height: 10px;
+        width: 10px;
+
+        visibility: visible;
+      }
+
+      #game-over {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 5em;
+        font-weight: bold;
+        padding: 10px 20px;
+
+        color: rgba(255, 105, 180, 0.726);
+        border: none;
+        cursor: pointer;
+        
+      }
+
+      #score {
+        position: absolute;
+        top: 10px;
+        right: 50%;
+        font-size: 1.5em;
+        font-weight: bold;
+        color: rgb(92, 110, 126);
+      }
+      #manual {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: rgba(51, 50, 50, 0.479);
+        font-size: 1em;
+      }
+
+      #character img {
+        width: 50px;
+        height: 50px;
+      }
+
+      #obstacle img {
+        width: 35px;
+        height: 45px;
+      }
+
+      #bullet img {
+        width: 15px;
+        height: 15px;
+      }
+      #restart-button {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1em;
+  padding: 5px 15px;
+  background-color: rgba(18, 125, 219, 0.151);
+  color: black;
+}
+
+#restart-button:hover {
+  color: white;
+}
+
+
+      #start-button {
+  position: relative;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.3em;
+  font-weight: bold;
+  padding: 10px 20px;
+  background-color: rgba(219, 206, 20, 0);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+@keyframes colorChange {
+  0% { color: rgba(56, 20, 219, 0.8); }
+  50% { color: rgba(255, 0, 0, 0.8); }
+  100% { color: rgba(37, 219, 20, 0.8); }
+}
+
+#start-button:hover {
+  animation: colorChange 1s infinite;
+}
+
+
+      #start-screen {
+        background-size: cover;
+        background-position: 0 0;
+        height: 300px;
+        position: relative;
+        overflow: hidden;
+        
+        background-image: url("/Day6/img/stbg.gif");
+      }
+
+      #homename {
+        position: absolute;
+        color : white;
+        bottom: 5%;
+        left : 40%;
+        font-size: 1em;
+
+        
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="start-screen">
+      <div id="homename">Made by YEONGYU</div>
+      <button id="start-button"> > Press Here to Start Game < </button>
+    </div>
+
+   
+      <div id="game" style="display: none">
+        <div id="character"><img src="/Day6/img/simpson.gif" /></div>
+        <div id="obstacle"><img src="/Day6/img/btsimp.gif" /></div>
+        <div id="bullet"><img src="/Day6/img/dn.png" /></div>
+        <div id="game-over"><span id="final-score"></span></div>
+        <div id="score">0</div>
+        <div id="manual"><b>Space bar: 점프 <br> Z 키: 도넛 발사
+      
+    </div>
+
+    <script src="game.js"></script>
+    <script>
+      var startScreen = document.getElementById("start-screen");
+      var startButton = document.getElementById("start-button");
+      var game = document.getElementById("game");
+
+      startButton.addEventListener("click", function () {
+        startScreen.style.display = "none";
+        game.style.display = "block";
+      });
+    </script>
+  </body>
+</html>
+
+

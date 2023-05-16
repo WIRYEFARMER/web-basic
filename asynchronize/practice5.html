@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie List</title>
+    <style>
+      .movie-card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        background-color: rgba(61, 71, 204, 0.603);
+      }
+
+      .movie-card {
+        width: 300px;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+        background-color: rgba(185, 187, 194, 0.897);
+        border: 5px rgb(134, 190, 228) solid;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      
+      .movie-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .movie-card img {
+        width: 230px;
+        height: auto;
+        margin-bottom: 10px;
+      }
+
+      .movie-card h2 {
+        font-size: 14px;
+        margin: 0;
+        text-align: center;
+        color: rgb(243, 243, 243);
+      }
+      .tt {
+        
+        text-align: center;
+
+      }
+      @keyframes colorChange {
+        0% {
+          color: rgba(56, 20, 219, 0.8);
+        }
+        25% {
+          color: rgba(202, 20, 219, 0.8);
+        }
+        50% {
+          color: rgba(255, 0, 0, 0.8);
+        }
+        75% {
+          color: rgba(20, 179, 219, 0.8);
+        }
+        100% {
+          color: rgba(37, 219, 20, 0.8);
+        }
+      }
+      .tt {
+  animation-name: colorChange;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+    </style>
+  </head>
+
+  <body>
+    <h1 class="tt">영화 포스터 훔치기</h1>
+    <div id="app">
+      <div class="movie-card-container">
+        <div
+          v-for="movie in movies"
+          class="movie-card"
+          :key="movie.id"
+          @click="goToMovieDetails(movie.id)"
+        >
+          <img
+            :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+            alt="Movie Poster"
+          />
+          <h2>OpenAPI로 영화 정보 가져오기</h2>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@2.6.14"></script>
+    <script>
+      // API 호출하여 영화 정보 가져오기
+      function fetchMovies() {
+        const apiKey = "a64533e7ece6c72731da47c9c8bc691f";
+        const language = "ko-KR";
+        const page = 1;
+
+        const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=${language}&page=${page}`;
+
+        return fetch(url).then((response) => response.json());
+      }
+
+      // Vue 인스턴스 생성
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            movies: [],
+          };
+        },
+        created() {
+          fetchMovies()
+            .then((data) => {
+              this.movies = data.results;
+            })
+            .catch((error) => console.log(error));
+        },
+        methods: {
+          goToMovieDetails(movieId) {
+            window.location.href = `practice6.html?id=${movieId}`;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

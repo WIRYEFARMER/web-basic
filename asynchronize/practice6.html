@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Details</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #998b8bc2;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .movie-details {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        background-color: #b7bfe4;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .movie-details img {
+        width: 200px;
+        height: auto;
+        margin-right: 20px;
+        border-radius: 5px;
+      }
+
+      .movie-details-info {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .movie-details-info h2 {
+        margin: 0;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .movie-details-info p {
+        margin: 0;
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div id="app">
+        <div class="movie-details">
+          <img :src="posterUrl" alt="Movie Poster" />
+          <div class="movie-details-info">
+            <h2>{{ movieTitle }}</h2>
+            <p>Release Date: {{ releaseDate }}</p>
+            <p>Overview: {{ overview }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@2.6.14"></script>
+    <script>
+      // 함수로부터 쿼리 문자열 파싱
+      function parseQueryString(queryString) {
+        var params = {};
+        var queries = queryString.split("&");
+
+        for (var i = 0; i < queries.length; i++) {
+          var temp = queries[i].split("=");
+          params[temp[0]] = decodeURIComponent(temp[1]);
+        }
+
+        return params;
+      }
+
+      // API 호출하여 영화 정보 가져오기
+      function fetchMovieDetails(movieId) {
+        const apiKey = "a64533e7ece6c72731da47c9c8bc691f";
+        const language = "ko-KR";
+
+        const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=${language}`;
+
+        return fetch(url).then((response) => response.json());
+      }
+
+      // Vue 인스턴스 생성
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            movieTitle: "",
+            posterUrl: "",
+            releaseDate: "",
+            overview: "",
+          };
+        },
+        created() {
+          const queryParams = parseQueryString(
+            window.location.search.substring(1)
+          );
+          const movieId = queryParams.id;
+
+          fetchMovieDetails(movieId)
+            .then((data) => {
+              this.movieTitle = data.title;
+              this.posterUrl = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+              this.releaseDate = data.release_date;
+              this.overview = data.overview;
+            })
+            .catch((error) => console.log(error));
+        },
+      });
+    </script>
+  </body>
+</html>

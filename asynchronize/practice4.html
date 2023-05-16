@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>포스트와 코멘트 표시</title>
+  <style>
+    .card {
+      border:5px solid hotpink;
+      border-radius: 4px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="postList"></div>
+
+  <script>
+    // 포스트와 코멘트 표시 함수
+    function displayPostList(posts) {
+      var postListElement = document.getElementById("postList");
+
+      // 포스트 배열을 반복하여 카드 형태로 표시
+      posts.forEach(function(post) {
+        var card = document.createElement("div");
+        card.className = "card";
+        card.textContent = post.title;
+
+        card.addEventListener("click", function() {
+          fetchComments(post.id);
+        });
+
+        postListElement.appendChild(card);
+      });
+    }
+
+    // 코멘트 가져오기 함수
+    function fetchComments(postId) {
+      fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`)
+        .then(response => response.json())
+        .then(data => displayComments(data))
+        .catch(error => console.log(error));
+    }
+
+    // 코멘트 표시 함수
+    function displayComments(comments) {
+      // TODO: 코멘트 표시 화면으로 이동하는 로직을 추가하세요.
+      console.log(comments);
+    }
+
+    // 포스트 목록 가져오기
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(response => response.json())
+      .then(data => displayPostList(data))
+      .catch(error => console.log(error));
+  </script>
+</body>
+</html>

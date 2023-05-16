@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">    
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,22 +10,23 @@
       integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
       crossorigin="anonymous"
     ></script>
-    <script>//제이쿼리 없이 자바스크립트로만 구현시키는 것을 바닐라라고 함.
+    <script>
       function loadDoc() {
-       
-        fetch("https://api.themoviedb.org/3/movie/upcoming?api_key=a64533e7ece6c72731da47c9c8bc691f&language=ko-KR&page=1") //id가 1번인 todo객체
+        fetch("https://jsonplaceholder.typicode.com/todos/1")
           .then((response) => response.json())
           .then((json) => {
-            demo.textContent = json.title;
+            $("#practice").text(json.title);
           });
-
-     
       }
+        
+        
+    
     </script>
   </head>
-
   <body>
-    <div id="demo"></div>
-    <input type="button" value="실행" onclick="loadDoc()" />
+    <ul>
+
+    </ul>
+    
   </body>
 </html>

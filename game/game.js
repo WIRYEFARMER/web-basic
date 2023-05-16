@@ -70,7 +70,7 @@ document.addEventListener("keydown", function (event) {
           obstacle.style.left = window.innerWidth + "px";
           //score += 200; //총알에 맞으면 장애물이 맞을 시 점수 올리기
           scoreDisplay.innerText = score;
-          obstacleSpeed += 0.2;
+          obstacleSpeed ++;
           clearInterval(bulletInterval);
           bullet.style.left = "-30px";
           shooting = false;
